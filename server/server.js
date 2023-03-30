@@ -1,0 +1,50 @@
+/* You need to set "type" : "module" in package.json */
+import express from 'express'
+import bodyParser from 'body-parser'
+import mongoose, { connect } from 'mongoose'
+import cors from "cors"
+import dotenv from "dotenv"
+import helmet from 'helmet'
+import morgan from 'morgan'
+import kpiRoutes from './routes/kpi.js'
+import KPI from './models/db.js'
+import { kpis } from './data/data.js'
+
+
+/* CONFIGURATION BOILERPLATE*/
+dotenv.config()
+const app = express()
+app.use(express.json())
+app.use(helmet())
+app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}))
+app.use(morgan("common"))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(cors())
+
+/* ROUTES */
+app.use('/kpi', kpiRoutes)
+
+
+/* MONGOOSE SETUP AND PORT SETUP */
+const PORT = process.env.PORT || 9000;
+mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(async() => {
+    app.listen(PORT, () => console.log(`Server Port: ${PORT}`))
+
+    // say connect to database
+    // console.log(`Connected to database: ${mongoose.Connection}`)
+
+    /* ADD DATA ONE TIME ONLY OR AS NEEDED */
+    // drop every database to avoid multiple entries | remove in production
+    // await mongoose.connection.db.dropDatabase();
+    // Insert mock data.js
+    // KPI.insertMany(kpis);
+
+}).catch((error) => console.log(`${error} did not connect`));
+
+
+
+
