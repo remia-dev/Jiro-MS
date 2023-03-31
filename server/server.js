@@ -6,10 +6,21 @@ import cors from "cors"
 import dotenv from "dotenv"
 import helmet from 'helmet'
 import morgan from 'morgan'
-import kpiRoutes from './routes/kpi.js'
+
+// Key performance indicators
 import KPI from './models/db.js'
+import kpiRoutes from './routes/kpi.js'
 import { kpis } from './data/data.js'
 
+// products
+import { products } from './data/data.js'
+import productRoutes from './routes/product.js'
+import Product from './models/Product.js'
+
+// transaction 
+import { transactions } from './data/data.js'
+import transactionRoutes from './routes/transaction.js'
+import Transaction from './models/Transaction.js'
 
 /* CONFIGURATION BOILERPLATE*/
 dotenv.config()
@@ -24,7 +35,8 @@ app.use(cors())
 
 /* ROUTES */
 app.use('/kpi', kpiRoutes)
-
+app.use('/product', productRoutes)
+app.use('/transaction', transactionRoutes)
 
 /* MONGOOSE SETUP AND PORT SETUP */
 const PORT = process.env.PORT || 9000;
@@ -42,6 +54,8 @@ mongoose.connect(process.env.MONGO_URL, {
     // await mongoose.connection.db.dropDatabase();
     // Insert mock data.js
     // KPI.insertMany(kpis);
+    // Product.insertMany(products)
+    // Transaction.insertMany(transactions);
 
 }).catch((error) => console.log(`${error} did not connect`));
 
