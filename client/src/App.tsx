@@ -18,8 +18,9 @@ function App() {
               <Navbar />
               <Routes>
                 <Route path='/' element={<Dashboard />} />
-                <Route path='/predictions' element={<div>predictions</div>} />
+                {/*<Route path='/info' element={<div>info</div>} />*/}
               </Routes>
+
               
               
               

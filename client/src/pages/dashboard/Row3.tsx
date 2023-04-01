@@ -22,8 +22,8 @@ const Row3 = (props: Props) => {
   const { palette } = useTheme();
   const pieColors = [palette.primary[800], palette.primary[500]];
 
-  const pieChartData = useMemo(()=>{
-    if(kpiData){
+  const pieChartData = useMemo(() => {
+    if (kpiData) {
       const totalExpenses = kpiData[0].totalExpenses;
       return Object.entries(kpiData[0].expensesByCategory).map(
         ([key, value]) => {
@@ -34,13 +34,13 @@ const Row3 = (props: Props) => {
             },
             {
               name: `${key} of Total`,
-              value: totalExpenses - value
-            }
-          ]
+              value: totalExpenses - value,
+            },
+          ];
         }
-      )
+      );
     }
-  }, [kpiData])
+  }, [kpiData]);
 
   const productColumns = [
     {
@@ -155,17 +155,18 @@ const Row3 = (props: Props) => {
           />
         </Box>
       </DashboardBox>
+
       <DashboardBox gridArea="i">
         <BoxHeader title="Expense Breakdown by category" sideText="%" />
-        <FlexBetween mt="0.5rem" gap="0.5rem" p="0 1rem" textAlign="center">
+        <FlexBetween mt="0.01rem" gap="0.2rem" p="0 1rem" textAlign="center">
           {pieChartData?.map((data, i) => (
             <Box key={`${data[0].name}-${i}`}>
-              <PieChart width={120} height={110}>
+              <PieChart width={110} height={100}>
                 <Pie
                   stroke="none"
                   data={data}
                   innerRadius={18}
-                  outerRadius={5}
+                  outerRadius={35}
                   paddingAngle={2}
                   dataKey="value"
                 >
@@ -179,7 +180,26 @@ const Row3 = (props: Props) => {
           ))}
         </FlexBetween>
       </DashboardBox>
-      <DashboardBox gridArea="j"></DashboardBox>
+
+      <DashboardBox gridArea="j">
+        <BoxHeader title="Overall Summary and Explanation Data" sideText="%" />
+        <Box
+          height="15px"
+          margin="1.25rem 1rem 0.4rem 1rem"
+          bgcolor={palette.primary[800]}
+          borderRadius="1rem"
+        >
+          <Box
+            height="15px"
+            bgcolor={palette.primary[600]}
+            borderRadius="1rem"
+            width="40%"
+          ></Box>
+        </Box>
+        <Typography margin="0 1rem" variant="h6">
+          Text
+        </Typography>
+      </DashboardBox>
     </>
   );
 };

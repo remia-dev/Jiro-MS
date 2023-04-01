@@ -33,13 +33,13 @@ const Navbar = (props: Props) => {
                     </Link>
                 </Box>
 
-                <Box sx={{"&:hover": {color: palette.primary[100]}}}>
-                    <Link to="/predictions" onClick={()=> setSelected("predictions")}
+                {/*<Box sx={{"&:hover": {color: palette.primary[100]}}}>
+                    <Link to="/info" onClick={()=> setSelected("info")}
                         style={{color: selected === "predictions" ? "inherit" : palette.grey[700],
                         textDecoration: "inherit"}}>
                         predictions
                     </Link>
-                </Box>
+                </Box>*/}
 
             </FlexBetween>
 
@@ -50,3 +50,4 @@ const Navbar = (props: Props) => {
 }
 
 export default Navbar
+
