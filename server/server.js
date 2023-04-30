@@ -7,6 +7,8 @@ import dotenv from "dotenv"
 import helmet from 'helmet'
 import morgan from 'morgan'
 
+require('dotenv').config();
+
 // Key performance indicators
 import KPI from './models/db.js'
 import kpiRoutes from './routes/kpi.js'
