@@ -4,7 +4,7 @@ import { GetKpisResponse, GetProductsResponse, GetTransactionsResponse } from ".
 
 // Create endpoints to call Backend
 export const api = createApi({
-    baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL}),
+    baseQuery: fetchBaseQuery({ baseUrl: "https://jiroms-backend.onrender.com/"}),
     reducerPath: "main",
     // Keep information (protects them?)
     tagTypes: ["Kpis", "Products", "Transactions"],
